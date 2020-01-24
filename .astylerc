@@ -1,0 +1,177 @@
+# For full docs:
+# http://astyle.sourceforge.net/astyle.html
+#
+
+# General Options:
+# - Only display errors
+# - Redirect stderr to stdout
+# - Enforce linux lineendings
+# - Preserve file modification date
+# - Do not create file backups, everything should be VCSed anyway
+--quiet
+--errors-to-stdout
+--lineend=linux
+--preserve-date
+--suffix=none
+
+# Style
+#
+# bsd:
+# int main(void)
+# {
+#     if (true)
+#     {
+#         return 0;
+#     }
+# }
+#
+# kr:
+# int main(void)
+# {
+#     if (true) {
+#         return 0;
+#     }
+# }
+--style=bsd
+
+# Indent with 4 spaces, convert tabs to spaces
+--indent=spaces=4
+--convert-tabs
+
+# Attach brackets to extern c: `extern "C" {`
+--attach-extern-c
+
+# Attach brackets to namespaces: `namespace foo {`
+--attach-namespaces
+
+# Indent preprocessor blocks, and defines
+--indent-preproc-block
+--indent-preproc-define
+
+# All comments have to be properly indented
+--indent-col1-comments
+
+# Do not indent conditionals
+--min-conditional-indent=0
+
+# Indent statements to be aligned up to 40 cols
+--max-instatement-indent=40
+
+# Insert space padding around operators. Any end of line comments will remain
+# in the original column, if possible. Note that there is no option to unpad.
+# Once padded, they stay padded.
+# 
+# if (foo==2)
+#     a=bar((b-c)*a,d--);
+# 
+# becomes:
+# 
+# if (foo == 2)
+#      a = bar((b - c) * a, d--);
+# 
+pad-oper
+
+# Insert space padding after paren headers only (e.g. 'if', 'for', 'while'...).
+# Any end of line comments will remain in the original column, if possible.
+# This can be used with unpad-paren to remove unwanted spaces.
+# 
+# if(isFoo(a, b))
+#     bar(a, b);
+# 
+# becomes:
+# 
+# if (isFoo(a, b))
+#     bar(a, b);
+# 
+# pad-header
+
+# Remove extra space padding around parenthesis on the inside and outside. Any
+# end of line comments will remain in the original column, if possible. This
+# option can be used in combination with the paren padding options pad‑paren,
+# pad‑paren‑out, pad‑paren‑in, and pad‑header above. Only padding that has not
+# been requested by other options will be removed.
+# 
+# For example, if a source has parens padded on both the inside and outside,
+# and you want inside only. You need to use unpad-paren to remove the outside
+# padding, and pad‑paren‑in to retain the inside padding. Using only
+# pad‑paren‑in would not remove the outside padding.
+# 
+# if ( isFoo( a, b ) )
+#     bar ( a, b );
+# 
+# becomes (with no padding option requested):
+# 
+# if(isFoo(a, b))
+#     bar(a, b);
+# 
+# unpad-paren
+
+# Delete empty lines within a function or method. Empty lines outside of
+# functions or methods are NOT deleted. If used with break-blocks or
+# break-blocks=all it will delete all lines EXCEPT the lines added by the
+# break-blocks options.
+# 
+# void Foo()
+# {
+# 	
+#     foo1 = 1;
+# 	
+#     foo2 = 2;
+# 	
+# }
+# 
+# becomes:
+# 
+# void Foo()
+# {
+#     foo1 = 1;
+#     foo2 = 2;
+# }
+# 
+# delete-empty-lines
+
+# Attach a pointer or reference operator (* or &) to either the variable type
+# (left) or variable name (right), or place it between the type and name
+# (middle). The spacing between the type and name will be preserved, if
+# possible. To format references separately use the following align-reference
+# option.
+# 
+# char *foo1;
+# char &foo2;
+# 
+# becomes (with align-pointer=type):
+# 
+# char* foo1;
+# char& foo2;
+# 
+# char* foo1;
+# char& foo2;
+# 
+# becomes (with align-pointer=middle):
+# 
+# char * foo1;
+# char & foo2;
+# 
+# char* foo1;
+# char& foo2;
+# 
+# becomes (with align-pointer=name):
+# 
+# char *foo1;
+# char &foo2;
+# 
+align-pointer=name
+
+# Break elseifs / closing brackets
+# might be useful with style=kr
+#--break-closing-brackets
+#--break-elseifs
+
+# Make sure to always add brackets to if,for,while etc statements
+# we do not want to repeat goto fail;
+--keep-one-line-blocks
+--keep-one-line-statements
+
+# Obvious 80 col length maximum
+--max-code-length=160
+--break-after-logical
